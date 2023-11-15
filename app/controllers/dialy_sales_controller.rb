@@ -1,0 +1,2 @@
+class DialySalesController < ApplicationController
+end
