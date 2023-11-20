@@ -1,0 +1,2 @@
+class DialySale < ApplicationRecord
+end
