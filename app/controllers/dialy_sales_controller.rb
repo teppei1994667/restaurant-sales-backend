@@ -6,4 +6,21 @@ class DialySalesController < ApplicationController
 
 		render json: @sales
 	end
+
+	# 新規の売上を作成します。
+	def create
+		@dialy_sale = DialySale.new(dialy_sale_params)
+
+		if @dialy_sale.sava
+			render json: @dialy_sale, status: :created, location: @dialy_sale
+		else
+			render json: @dialy_sale.errors, status: :unprocessable_entity
+		end
+	end
+
+	private
+	
+	def dialy_sale_params
+		params.require(:dialy_sale).permit(:day, :lunch_sales, :dinner_sales)
+	end
 end
