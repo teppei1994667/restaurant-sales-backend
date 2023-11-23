@@ -11,7 +11,7 @@ class DialySalesController < ApplicationController
 	def create
 		@dialy_sale = DialySale.new(dialy_sale_params)
 
-		if @dialy_sale.sava
+		if @dialy_sale.save
 			render json: @dialy_sale, status: :created, location: @dialy_sale
 		else
 			render json: @dialy_sale.errors, status: :unprocessable_entity
