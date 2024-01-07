@@ -18,6 +18,11 @@ class DialySalesController < ApplicationController
 		end
 	end
 
+	def destroy
+		dialy_sale_ids = params[:id].split(",")
+		DialySale.destroy(dialy_sale_ids)
+	end
+
 	private
 	
 	def dialy_sale_params
