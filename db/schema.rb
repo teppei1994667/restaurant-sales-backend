@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2024_01_21_054322) do
+ActiveRecord::Schema[7.0].define(version: 2024_01_21_060134) do
   create_table "dialy_sales", force: :cascade do |t|
     t.integer "lunch_sales", null: false
     t.integer "dinner_sales", null: false
@@ -20,6 +20,7 @@ ActiveRecord::Schema[7.0].define(version: 2024_01_21_054322) do
     t.integer "lunch_visitor", null: false
     t.integer "dinner_visitor", null: false
     t.integer "purchase", null: false
+    t.integer "personnel_cost", null: false
   end
 
 end
