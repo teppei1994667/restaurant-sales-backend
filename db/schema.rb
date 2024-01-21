@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_12_18_134906) do
+ActiveRecord::Schema[7.0].define(version: 2024_01_21_054322) do
   create_table "dialy_sales", force: :cascade do |t|
     t.integer "lunch_sales", null: false
     t.integer "dinner_sales", null: false
@@ -19,8 +19,6 @@ ActiveRecord::Schema[7.0].define(version: 2023_12_18_134906) do
     t.string "day", null: false
     t.integer "lunch_visitor", null: false
     t.integer "dinner_visitor", null: false
-    t.integer "lunch_personnel_cost", null: false
-    t.integer "dinner_personnel_cost", null: false
     t.integer "purchase", null: false
   end
 
