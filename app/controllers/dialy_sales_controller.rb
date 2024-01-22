@@ -21,6 +21,7 @@ class DialySalesController < ApplicationController
 		end
 	end
 
+	# 売り上げを削除します。
 	def destroy
 		dialy_sale_ids = params[:id].split(",")
 		DialySale.destroy(dialy_sale_ids)
