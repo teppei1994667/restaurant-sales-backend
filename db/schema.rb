@@ -10,13 +10,12 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2024_01_21_060134) do
+ActiveRecord::Schema[7.0].define(version: 2024_01_26_152603) do
   create_table "dialy_sales", force: :cascade do |t|
     t.integer "lunch_sales", null: false
     t.integer "dinner_sales", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.string "day", null: false
     t.integer "lunch_visitor", null: false
     t.integer "dinner_visitor", null: false
     t.integer "purchase", null: false
