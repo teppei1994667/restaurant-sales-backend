@@ -13,7 +13,7 @@ class DialySalesController < ApplicationController
 	# 新規の売上を作成します。
 	def create
 		@dialy_sale = DialySale.new(dialy_sale_params)
-
+		puts @dialy_sale.sales_day
 		if @dialy_sale.save
 			render json: @dialy_sale, status: :created, location: @dialy_sale
 		else
@@ -41,6 +41,6 @@ class DialySalesController < ApplicationController
 	private
 	
 	def dialy_sale_params
-		params.require(:dialy_sale).permit(:day, :lunch_sales, :dinner_sales, :lunch_visitor, :dinner_visitor, :personnel_cost, :purchase)
+		params.require(:dialy_sale).permit(:'sales_day', :lunch_sales, :dinner_sales, :lunch_visitor, :dinner_visitor, :personnel_cost, :purchase)
 	end
 end
