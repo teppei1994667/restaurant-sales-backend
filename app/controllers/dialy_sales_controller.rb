@@ -2,8 +2,8 @@ class DialySalesController < ApplicationController
 
 	# 売上一覧をJson形式で返却します
 	def index
-		if params[:day] 
-			@sales = DialySale.where("day LIKE ?", "#{params[:day]}%")
+		if params[:first_day] && params[:last_day]
+			@sales = DialySale.where(sales_day: params[:first_day]..params[:last_day])
 		else
 			@sales = DialySale.all
 		end
