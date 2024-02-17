@@ -2,12 +2,15 @@ class DialySalesController < ApplicationController
 
 	# 売上一覧をJson形式で返却します
 	def index
+		@dialy_sale = DialySale.new
 		if params[:start_day] && params[:end_day]
-			@sales = DialySale.where(sales_day: params[:start_day]..params[:end_day])
+			dialy_sales = DialySale.where(sales_day: params[:start_day]..params[:end_day])
+			@return_dialy_sales = @dialy_sale.convert_dialy_sales(dialy_sales)
 		else
-			@sales = DialySale.all
+			dialy_sales = DialySale.all
+			@return_dialy_sales = @dialy_sale.convert_dialy_sales(dialy_sales)
 		end
-		render json: @sales
+		render json: @return_dialy_sales
 	end
 
 	# 新規の売上を作成します。
