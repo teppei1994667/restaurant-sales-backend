@@ -1,0 +1,11 @@
+{
+  "name": "teppei667",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": "git@github.com:teppei1994667/restaurant-sales-backend.git",
+  "author": "teppei1994667 <teppei.engineer.667@gmail.com>",
+  "license": "MIT",
+  "devDependencies": {
+    "prettier": "^3.2.5"
+  }
+}
