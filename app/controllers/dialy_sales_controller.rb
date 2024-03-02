@@ -2,13 +2,12 @@ class DialySalesController < ApplicationController
   # 売上一覧をJson形式で返却します
   def index
     @dialy_sale = DialySale.new
-    if params[:start_day] && params[:end_day]
+    if params[:start_day] && params[:end_day] # rubocop:disable Style/ConditionalAssignment
       dialy_sales = DialySale.where(sales_day: params[:start_day]..params[:end_day])
-      @return_dialy_sales = @dialy_sale.convert_dialy_sales(dialy_sales)
     else
       dialy_sales = DialySale.all
-      @return_dialy_sales = @dialy_sale.convert_dialy_sales(dialy_sales)
     end
+		@return_dialy_sales = @dialy_sale.convert_dialy_sales(dialy_sales) # rubocop:disable Layout/IndentationStyle,Layout/IndentationConsistency
     render json: @return_dialy_sales
   end
 

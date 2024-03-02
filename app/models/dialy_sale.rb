@@ -1,7 +1,7 @@
 class DialySale < ApplicationRecord
   # datetimeをYYYY/MM/DD(W)の文字列に変更
-  def datetime_to_string(_datetime)
-    _datetime.strftime('%Y/%m/%d') + '(' + %w[日 月 火 水 木 金 土][_datetime.wday] + ')'
+  def datetime_to_string(datetime)
+    "#{datetime.strftime('%Y/%m/%d')}(#{%w[日 月 火 水 木 金 土][datetime.wday]})"
   end
 
   # DialySaleを一覧返却の形式に変換する
