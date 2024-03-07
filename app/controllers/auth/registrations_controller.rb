@@ -5,7 +5,8 @@ class Auth::RegistrationsController < DeviseTokenAuth::RegistrationsController
   private
 
   def sign_up_params
-    params.permit(:name, :email, :passward, :passward_confirmation)
+    params.require(:registration).permit(:name, :email, :password,
+                                         :password_confirmation)
   end
 
   # ユーザーデータが保存されているか確認し、保存されていれば新しいトークンを作成。
