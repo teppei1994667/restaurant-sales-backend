@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
   mount_devise_token_auth_for 'User', at: 'auth', controllers: {
-    registration: "auth/registration"
+    registrations: "auth/registrations"
   }
 
   namespace :auth do
