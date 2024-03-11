@@ -6,6 +6,6 @@ Rails.application.routes.draw do
   namespace :auth do
     resource :sessions, only: %i[index]
   end
-  resources :users, only: %i[show]
+  resources :users, only: %i[index]
   resources :dialy_sales
 end
