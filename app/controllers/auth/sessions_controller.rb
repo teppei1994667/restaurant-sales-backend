@@ -1,4 +1,4 @@
-class Auth::SessionsController < ApplicationController
+class Auth::SessionsController < DeviseTokenAuth::SessionsController
   def index
     if current_user
       render json: { is_login: trun, data: current_user }

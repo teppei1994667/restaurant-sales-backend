@@ -4,8 +4,8 @@ Rails.application.routes.draw do
   }
 
   namespace :auth do
-    resource :sessions, only: %i[index]
+    resource :sessions
   end
-  resources :users, only: %i[index]
+  resources :users
   resources :dialy_sales
 end
