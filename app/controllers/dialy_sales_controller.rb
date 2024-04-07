@@ -14,7 +14,6 @@ class DialySalesController < ApplicationController
   # 新規の売上を作成します。
   def create
     @dialy_sale = DialySale.new(dialy_sale_params)
-    puts @dialy_sale.sales_day
     if @dialy_sale.save
       render json: @dialy_sale, status: :created, location: @dialy_sale
     else
