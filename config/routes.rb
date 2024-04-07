@@ -5,5 +5,6 @@ Rails.application.routes.draw do
   }
 
   resources :users
+  resources :stores
   resources :dialy_sales
 end
