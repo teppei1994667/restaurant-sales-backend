@@ -9,17 +9,17 @@ class DialySale < ApplicationRecord
     new_dialy_sales = []
     dialy_sales.map do |dialy_sale|
       new_dialy_sales.push({
-                             id: dialy_sale.id,
-                             sales_day: datetime_to_string(dialy_sale.sales_day),
-                             lunch_sales: dialy_sale.lunch_sales,
-                             dinner_sales: dialy_sale.dinner_sales,
-                             lunch_visitor: dialy_sale.lunch_visitor,
-                             dinner_visitor: dialy_sale.dinner_visitor,
-                             personnel_cost: dialy_sale.personnel_cost,
-                             purchase: dialy_sale.purchase,
-                             total_sale: dialy_sale.lunch_sales + dialy_sale.dinner_sales,
-                             total_visitor: dialy_sale.lunch_visitor + dialy_sale.dinner_visitor
-                           })
+        id: dialy_sale.id,
+        sales_day: datetime_to_string(dialy_sale.sales_day),
+        lunch_sales: dialy_sale.lunch_sales,
+        dinner_sales: dialy_sale.dinner_sales,
+        lunch_visitor: dialy_sale.lunch_visitor,
+        dinner_visitor: dialy_sale.dinner_visitor,
+        personnel_cost: dialy_sale.personnel_cost,
+        purchase: dialy_sale.purchase,
+        total_sale: dialy_sale.lunch_sales + dialy_sale.dinner_sales,
+        total_visitor: dialy_sale.lunch_visitor + dialy_sale.dinner_visitor
+      })
     end
     new_dialy_sales
   end
