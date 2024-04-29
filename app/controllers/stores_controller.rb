@@ -6,9 +6,9 @@ class StoresController < ApplicationController
     @store = Store.create(store_params)
     p @store
     if @store.save
-      render json: {message: "storeの作成が成功しました"}
+      render json: @store, status: :created, location: @store
     else
-      render json: {message: "storeの作成が失敗しました"}
+      render json: @store.errors, status: :unprocessable_entity
     end
   end
 
