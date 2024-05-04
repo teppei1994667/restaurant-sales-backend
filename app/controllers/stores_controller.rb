@@ -4,7 +4,6 @@ class StoresController < ApplicationController
 
   def create
     @store = Store.create(store_params)
-    p @store
     if @store.save
       render json: @store, status: :created, location: @store
     else
