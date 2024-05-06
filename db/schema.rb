@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2024_04_06_140127) do
+ActiveRecord::Schema[7.0].define(version: 2024_05_06_133811) do
   create_table "dialy_sales", force: :cascade do |t|
     t.integer "lunch_sales", null: false
     t.integer "dinner_sales", null: false
@@ -21,6 +21,8 @@ ActiveRecord::Schema[7.0].define(version: 2024_04_06_140127) do
     t.integer "purchase", null: false
     t.integer "personnel_cost", null: false
     t.datetime "sales_day", null: false
+    t.integer "store_id", null: false
+    t.index ["store_id"], name: "index_dialy_sales_on_store_id"
   end
 
   create_table "stores", force: :cascade do |t|
@@ -65,5 +67,6 @@ ActiveRecord::Schema[7.0].define(version: 2024_04_06_140127) do
     t.index ["uid", "provider"], name: "index_users_on_uid_and_provider", unique: true
   end
 
+  add_foreign_key "dialy_sales", "stores"
   add_foreign_key "stores", "users"
 end
