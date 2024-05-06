@@ -1,4 +1,5 @@
 class DialySale < ApplicationRecord
+  belongs_to :store
   # datetimeをYYYY/MM/DD(W)の文字列に変更
   def datetime_to_string(datetime)
     "#{datetime.strftime('%Y/%m/%d')}(#{%w[日 月 火 水 木 金 土][datetime.wday]})"
