@@ -41,7 +41,7 @@ class DialySalesController < ApplicationController
   private
 
   def dialy_sale_params
-    params.require(:dialy_sale).permit(:sales_day, :lunch_sales, :dinner_sales, :lunch_visitor, :dinner_visitor, :personnel_cost,
+    params.require(:dialy_sale).permit(:store_id, :sales_day, :lunch_sales, :dinner_sales, :lunch_visitor, :dinner_visitor, :personnel_cost,
                                        :purchase)
   end
 end

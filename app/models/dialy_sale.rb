@@ -11,6 +11,7 @@ class DialySale < ApplicationRecord
     dialy_sales.map do |dialy_sale|
       new_dialy_sales.push({
         id: dialy_sale.id,
+        store_id: dialy_sale.store_id,
         sales_day: datetime_to_string(dialy_sale.sales_day),
         lunch_sales: dialy_sale.lunch_sales,
         dinner_sales: dialy_sale.dinner_sales,
