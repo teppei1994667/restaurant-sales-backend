@@ -3,7 +3,7 @@ class DialySalesController < ApplicationController
   def index
     @dialy_sale = DialySale.new
     if params[:start_day] && params[:end_day]
-      dialy_sales = DialySale.where(sales_day: params[:start_day]..params[:end_day])
+      dialy_sales = DialySale.where(store_id: params[:store_id], sales_day: params[:start_day]..params[:end_day])
     else
       dialy_sales = DialySale.all
     end
