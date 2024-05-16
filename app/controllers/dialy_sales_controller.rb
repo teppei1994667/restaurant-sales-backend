@@ -3,7 +3,7 @@ class DialySalesController < ApplicationController
   def index
     @dialy_sale = DialySale.new
     if params[:start_day] && params[:end_day]
-      dialy_sales = DialySale.where(sales_day: params[:start_day]..params[:end_day])
+      dialy_sales = DialySale.where(store_id: params[:store_id], sales_day: params[:start_day]..params[:end_day])
     else
       dialy_sales = DialySale.all
     end
@@ -41,7 +41,7 @@ class DialySalesController < ApplicationController
   private
 
   def dialy_sale_params
-    params.require(:dialy_sale).permit(:sales_day, :lunch_sales, :dinner_sales, :lunch_visitor, :dinner_visitor, :personnel_cost,
+    params.require(:dialy_sale).permit(:store_id, :sales_day, :lunch_sales, :dinner_sales, :lunch_visitor, :dinner_visitor, :personnel_cost,
                                        :purchase)
   end
 end
