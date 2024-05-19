@@ -1,23 +1,30 @@
 class DialySalesController < ApplicationController
   # 売上一覧をJson形式で返却します
   def index
-    @dialy_sale = DialySale.new
+    @dialy_sales = DialySale.new
     if params[:start_day] && params[:end_day]
       dialy_sales = DialySale.where(store_id: params[:store_id], sales_day: params[:start_day]..params[:end_day])
     else
       dialy_sales = DialySale.all
     end
-		@return_dialy_sales = @dialy_sale.convert_dialy_sales(dialy_sales)
+		@return_dialy_sales = @dialy_sales.convert_dialy_sales(dialy_sales)
     render json: @return_dialy_sales
   end
 
   # 新規の売上を作成します。
   def create
-    @dialy_sale = DialySale.new(dialy_sale_params)
-    if @dialy_sale.save
-      render json: @dialy_sale, status: :created, location: @dialy_sale
+    @new_dialy_sale = DialySale.new(dialy_sale_params)
+    if @new_dialy_sale.save
+      @dialy_sales = DialySale.new
+      if params[:start_day] && params[:end_day]
+        dialy_sales = DialySale.where(store_id: dialy_sale_params[:store_id], sales_day: params[:start_day]..params[:end_day])
+      else
+        dialy_sales = DialySale.where(store_id: dialy_sale_params[:store_id])
+      end
+      @return_dialy_sales = @dialy_sales.convert_dialy_sales(dialy_sales)
+      render json: @return_dialy_sales
     else
-      render json: @dialy_sale.errors, status: :unprocessable_entity
+      render json: @new_dialy_sale.errors, status: :unprocessable_entity
     end
   end
 
@@ -26,7 +33,15 @@ class DialySalesController < ApplicationController
     @dialy_sale = DialySale.find(params[:id])
 
     if @dialy_sale.update(dialy_sale_params)
-      render json: @dialy_sale
+      @dialy_sales = DialySale.new
+      if params[:start_day] && params[:end_day]
+        dialy_sales = DialySale.where(store_id: dialy_sale_params[:store_id], sales_day: params[:start_day]..params[:end_day])
+      else
+        dialy_sales = DialySale.where(store_id: dialy_sale_params[:store_id])
+      end
+      @return_dialy_sales = @dialy_sales.convert_dialy_sales(dialy_sales)
+      render json: @return_dialy_sales
+      # render json: @dialy_sale
     else
       render json: @dialy_sale.errors, status: :unprocessable_entity
     end
