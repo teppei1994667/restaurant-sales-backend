@@ -53,6 +53,14 @@ class DialySalesController < ApplicationController
     dialy_sale_ids.each do |dialy_sale_id|
       DialySale.find(dialy_sale_id).destroy
     end
+    @dialy_sales = DialySale.new
+    if params[:start_day] && params[:end_day]
+      dialy_sales = DialySale.where(store_id: dialy_sale_params[:store_id], sales_day: params[:start_day]..params[:end_day])
+    else
+      dialy_sales = DialySale.where(store_id: dialy_sale_params[:store_id])
+    end
+    @return_dialy_sales = @dialy_sales.convert_dialy_sales(dialy_sales)
+    render json: @return_dialy_sales
   end
 
   private
