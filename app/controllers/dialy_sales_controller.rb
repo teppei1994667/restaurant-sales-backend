@@ -49,8 +49,10 @@ class DialySalesController < ApplicationController
 
   # 売り上げを削除します。
   def destroy
-    dialy_sale_ids = params[:id].split(',')
-    DialySale.destroy(dialy_sale_ids)
+    dialy_sale_ids = params[:delete_ids]
+    dialy_sale_ids.each do |dialy_sale_id|
+      DialySale.find(dialy_sale_id).destroy
+    end
   end
 
   private
