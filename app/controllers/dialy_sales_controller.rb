@@ -20,7 +20,6 @@ class DialySalesController < ApplicationController
   # 新規の売上を作成します。
   def create
     @new_dialy_sale = DialySale.new(dialy_sale_params)
-    p $start_day
     if @new_dialy_sale.save
       dialy_sales = DialySale.new
       dialy_sales = DialySale.where(store_id: dialy_sale_params[:store_id], sales_day: $start_day..$today)
