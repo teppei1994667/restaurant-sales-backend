@@ -19,40 +19,40 @@ class DialySalesController < ApplicationController
 
   # 新規の売上を作成します。
   def create
-    @new_dialy_sale = DialySale.new(dialy_sale_params)
-    if @new_dialy_sale.save
-      dialy_sales = DialySale.new
+    new_dialy_sale = DialySale.new(dialy_sale_params)
+    if new_dialy_sale.save
+      dialy_sale_instance = DialySale.new
       dialy_sales = DialySale.where(store_id: dialy_sale_params[:store_id], sales_day: $start_day..$today)
-      @return_dialy_sales = @dialy_sales.convert_dialy_sales(dialy_sales)
-      render json: @return_dialy_sales
+      return_dialy_sales = dialy_sale_instance.convert_dialy_sales(dialy_sales)
+      render json: return_dialy_sales
     else
-      render json: @new_dialy_sale.errors.full_messages, status: :unprocessable_entity
+      render json: new_dialy_sale.errors.full_messages, status: :unprocessable_entity
     end
   end
 
   # 売り上げを更新します。
   def update
-    @update_dialy_sale = DialySale.find(params[:id])
-    if @update_dialy_sale.update(dialy_sale_params)
-      @dialy_sales = DialySale.new
+    update_dialy_sale = DialySale.find(params[:id])
+    if update_dialy_sale.update(dialy_sale_params)
+      dialy_sale_instace = DialySale.new
       dialy_sales = DialySale.where(store_id: dialy_sale_params[:store_id], sales_day: $start_day..$today)
-      @return_dialy_sales = @dialy_sales.convert_dialy_sales(dialy_sales)
-      render json: @return_dialy_sales
+      return_dialy_sales = dialy_sale_instace.convert_dialy_sales(dialy_sales)
+      render json: return_dialy_sales
     else
-      render json: @update_dialy_sale.errors.full_messages, status: :unprocessable_entity
+      render json: update_dialy_sale.errors.full_messages, status: :unprocessable_entity
     end
   end
 
   # 売り上げを削除します。
   def destroy
-    dialy_sale_ids = params[:delete_ids]
-    dialy_sale_ids.each do |dialy_sale_id|
-      DialySale.find(dialy_sale_id).destroy
+    delete_ids = params[:delete_ids]
+    delete_ids.each do |delete_id|
+      DialySale.find(delete_id).destroy
     end
-    @dialy_sales = DialySale.new
+    dialy_sale_instace = DialySale.new
     dialy_sales = DialySale.where(store_id: dialy_sale_params[:store_id], sales_day: $start_day..$today)
-    @return_dialy_sales = @dialy_sales.convert_dialy_sales(dialy_sales)
-    render json: @return_dialy_sales
+    return_dialy_sales = dialy_sale_instace.convert_dialy_sales(dialy_sales)
+    render json: return_dialy_sales
   end
 
   private
