@@ -27,6 +27,9 @@ module RestaurantSalesBackend
     config.time_zone = 'Tokyo'
     config.active_record.default_timezone = :local
 
+    # 日本語化
+    config.i18n.default_locale = :ja
+
     # devise-token-auth用の認証
     config.session_store :cookie_store, key: '_interslice_session'
     config.middleware.use ActionDispatch::Cookies

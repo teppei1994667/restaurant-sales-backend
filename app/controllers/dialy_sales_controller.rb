@@ -26,7 +26,7 @@ class DialySalesController < ApplicationController
       @return_dialy_sales = @dialy_sales.convert_dialy_sales(dialy_sales)
       render json: @return_dialy_sales
     else
-      render json: @new_dialy_sale.errors, status: :unprocessable_entity
+      render json: @new_dialy_sale.errors.full_messages, status: :unprocessable_entity
     end
   end
 
@@ -40,7 +40,7 @@ class DialySalesController < ApplicationController
       render json: @return_dialy_sales
       # render json: @dialy_sale
     else
-      render json: @dialy_sale.errors, status: :unprocessable_entity
+      render json: @new_dialy_sale.errors.full_messages, status: :unprocessable_entity
     end
   end
 
