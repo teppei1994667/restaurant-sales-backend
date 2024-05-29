@@ -32,15 +32,14 @@ class DialySalesController < ApplicationController
 
   # 売り上げを更新します。
   def update
-    @dialy_sale = DialySale.find(params[:id])
-    if @dialy_sale.update(dialy_sale_params)
+    @update_dialy_sale = DialySale.find(params[:id])
+    if @update_dialy_sale.update(dialy_sale_params)
       @dialy_sales = DialySale.new
       dialy_sales = DialySale.where(store_id: dialy_sale_params[:store_id], sales_day: $start_day..$today)
       @return_dialy_sales = @dialy_sales.convert_dialy_sales(dialy_sales)
       render json: @return_dialy_sales
-      # render json: @dialy_sale
     else
-      render json: @new_dialy_sale.errors.full_messages, status: :unprocessable_entity
+      render json: @update_dialy_sale.errors.full_messages, status: :unprocessable_entity
     end
   end
 

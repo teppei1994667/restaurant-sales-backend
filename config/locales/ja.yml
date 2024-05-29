@@ -2,7 +2,7 @@ ja:
   activerecord:
     attributes:
       dialy_sale:
-        sales_day: "その営業日"
+        sales_day: "営業日"
     errors:
       messages:
         record_invalid: 'バリデーションに失敗しました: %{errors}'
