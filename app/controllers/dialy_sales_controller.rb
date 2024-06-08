@@ -17,6 +17,12 @@ class DialySalesController < ApplicationController
     render json: return_dialy_sales
   end
 
+  # ２期間の売り上げデータをJson形式で返却します
+  def comparison
+    p params[:id]
+    render json: "こんにちは"
+  end
+
   # 新規の売上を作成します。
   def create
     new_dialy_sale = DialySale.new(dialy_sale_params)
