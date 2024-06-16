@@ -1,8 +1,7 @@
 class DialySalesController < ApplicationController
-
   # クライアントから期間が指定が無い場合のデフォルト値(当月月初から当日)
   # グローバル変数として定義しているのでスコープが存在しないデメリットがあるので再度検討
-  $start_day = Date.today.at_beginning_of_month.strftime("%Y-%m-%d")
+  $start_day = Time.zone.today.at_beginning_of_month.strftime("%Y-%m-%d")
   $today = Time.zone.today.strftime("%Y-%m-%d")
 
   # 売上一覧をJson形式で返却します
@@ -13,7 +12,7 @@ class DialySalesController < ApplicationController
     else
       dialy_sales = DialySale.where(store_id: params[:store_id], sales_day: $start_day..$today)
     end
-		return_dialy_sales = dialy_sale.convert_dialy_sales(dialy_sales)
+    return_dialy_sales = dialy_sale.convert_dialy_sales(dialy_sales)
     render json: return_dialy_sales
   end
 
