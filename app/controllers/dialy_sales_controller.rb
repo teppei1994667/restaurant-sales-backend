@@ -1,8 +1,12 @@
 class DialySalesController < ApplicationController
   # クライアントから期間が指定が無い場合のデフォルト値(当月月初から当日)
   # グローバル変数として定義しているのでスコープが存在しないデメリットがあるので再度検討
-  $start_day = Time.zone.today.at_beginning_of_month.strftime("%Y-%m-%d")
+  $start_day = Date.today.at_beginning_of_month.strftime("%Y-%m-%d")
   $today = Time.zone.today.strftime("%Y-%m-%d")
+
+  # comparison用の期間指定取得用変数
+  $first_day_of_this_week = Date.today.beginning_of_week.strftime("%Y-%m-%d")
+  $first_day_of_last_week = Date.today.prev_week.beginning_of_week.strftime("%Y-%m-%d")
 
   # 売上一覧をJson形式で返却します
   def index
@@ -18,8 +22,11 @@ class DialySalesController < ApplicationController
 
   # ２期間の売り上げデータをJson形式で返却します
   def comparison
-    p params[:id]
-    render json: "こんにちは"
+    p $first_day_of_this_week
+    p $first_day_of_last_week
+    this_week_dialy_sales = DialySale.where(store_id: params[:id], sales_day: $first_day_of_this_week..$today)
+    # last_week_dialy_sales = DIalySale.where(store_id: params[:id], sales_day: $first_day_of_this_week..$today)
+    render json: this_week_dialy_sales
   end
 
   # 新規の売上を作成します。
