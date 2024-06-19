@@ -1,3 +1,5 @@
+inherit_from: .rubocop_todo.yml
+
 require: rubocop-rails
 
 AllCops:
@@ -81,3 +83,17 @@ Style/FrozenStringLiteralComment:
 # メソッドパラメータ名の最小文字数を設定
 Naming/MethodParameterName:
   MinNameLength: 1
+
+# * 式展開したい場合に書き換えるのが面倒
+# * 文章ではダブルクォートよりもシングルクォートの方が頻出する
+# ことから EnforcedStyle: double_quotes 推奨
+Style/StringLiterals:
+  EnforcedStyle: double_quotes
+
+# 式展開中でもダブルクォートを使う
+# 普段の文字列リテラルがダブルクォートなので使い分けるのが面倒
+Style/StringLiteralsInInterpolation:
+  EnforcedStyle: double_quotes
+
+Style/ConditionalAssignment:
+  Enabled: false
