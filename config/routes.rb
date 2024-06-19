@@ -7,5 +7,4 @@ Rails.application.routes.draw do
   resources :users
   resources :stores
   resources :dialy_sales
-  get "/dialy_sales_comparison/:id", to: "dialy_sales#comparison"
 end

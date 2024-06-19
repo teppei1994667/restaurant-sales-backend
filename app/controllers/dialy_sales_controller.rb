@@ -4,10 +4,6 @@ class DialySalesController < ApplicationController
   $start_day = Date.today.at_beginning_of_month.strftime("%Y-%m-%d")
   $today = Time.zone.today.strftime("%Y-%m-%d")
 
-  # comparison用の期間指定取得用変数
-  $first_day_of_this_week = Date.today.beginning_of_week.strftime("%Y-%m-%d")
-  $first_day_of_last_week = Date.today.prev_week.beginning_of_week.strftime("%Y-%m-%d")
-
   # 売上一覧をJson形式で返却します
   def index
     dialy_sale = DialySale.new
@@ -18,15 +14,6 @@ class DialySalesController < ApplicationController
     end
     return_dialy_sales = dialy_sale.convert_dialy_sales(dialy_sales)
     render json: return_dialy_sales
-  end
-
-  # ２期間の売り上げデータをJson形式で返却します
-  def comparison
-    p $first_day_of_this_week
-    p $first_day_of_last_week
-    this_week_dialy_sales = DialySale.where(store_id: params[:id], sales_day: $first_day_of_this_week..$today)
-    # last_week_dialy_sales = DIalySale.where(store_id: params[:id], sales_day: $first_day_of_this_week..$today)
-    render json: this_week_dialy_sales
   end
 
   # 新規の売上を作成します。
